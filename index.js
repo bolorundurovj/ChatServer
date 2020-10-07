@@ -6,7 +6,7 @@ const io = require('socket.io')(http);
 //Run when client connects
 io.on('connection', (socket) => {
   socket.on('disconnect', () => {
-    socket.nickname = nickname;
+    socket.nickname = 'nickname';
     io.emit('users-changed', { user: socket.nickname, event: 'left' });
   });
 
@@ -16,7 +16,6 @@ io.on('connection', (socket) => {
   });
 
   socket.on('add-message', (message) => {
-    socket.nickname = nickname;
     io.emit('message', {
       text: message.text,
       from: socket.nickname,
